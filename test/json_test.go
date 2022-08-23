@@ -6,8 +6,8 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/eywa-protocol/bls-crypto/bls"
 	"github.com/stretchr/testify/require"
+	"gitlab.digiu.ai/blockchainlaboratory/bls-crypto/bls"
 )
 
 type Message struct {
@@ -38,14 +38,14 @@ func Test_MarshallUnmarshallJson(t *testing.T) {
 	}
 	raw, err := json.Marshal(outmsg)
 	require.NoError(t, err)
-	//log.Print(string(raw))
+	// log.Print(string(raw))
 
 	var inmsg Message
 	err = json.Unmarshal(raw, &inmsg)
 	require.NoError(t, err)
 	require.Equal(t, len(inmsg.Multis), len(outmsg.Multis))
 	require.Equal(t, inmsg.Multis, outmsg.Multis)
-	for i, _ := range inmsg.Privs {
+	for i := range inmsg.Privs {
 		require.Equal(t, 0, bytes.Compare(inmsg.Privs[i].Marshal(), privs[i].Marshal()))
 		require.Equal(t, 0, bytes.Compare(inmsg.Multis[i].PartPublicKey.Marshal(), pubs[i].Marshal()))
 		require.Equal(t, 0, bytes.Compare(inmsg.Multis[i].PartSignature.Marshal(), signs[i].Marshal()))

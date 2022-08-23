@@ -4,7 +4,7 @@ import (
 	"crypto/rand"
 	"math/big"
 
-	"github.com/eywa-protocol/bls-crypto/bls"
+	"gitlab.digiu.ai/blockchainlaboratory/bls-crypto/bls"
 )
 
 // GenRandomBytes generates byte array with random data

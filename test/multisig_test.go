@@ -7,8 +7,8 @@ import (
 	"testing"
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
-	"github.com/eywa-protocol/bls-crypto/bls"
 	"github.com/stretchr/testify/require"
+	"gitlab.digiu.ai/blockchainlaboratory/bls-crypto/bls"
 )
 
 var (
@@ -88,7 +88,7 @@ func Test_VerifyMultisigManual(t *testing.T) {
 		t.Skip("This test needs 256 or more PARTICIPANTS_NUMBER. Skipping.")
 	}
 	bitmask := new(big.Int).Sub(new(big.Int).Exp(big.NewInt(2), big.NewInt(256), nil), big.NewInt(1))
-	//log.Println(bitmask.Text(16))
+	// log.Println(bitmask.Text(16))
 
 	pub, sig := signMultisigPartially(bitmask)
 	tx, err := blsSignatureTest.VerifyMultisignature(owner, aggPub.Marshal(), pub.Marshal(), msg, sig.Marshal(), bitmask)
@@ -98,7 +98,7 @@ func Test_VerifyMultisigManual(t *testing.T) {
 	verifiedSol, err := blsSignatureTest.Verified(&bind.CallOpts{})
 	require.True(t, verifiedSol)
 
-	//bitmask = new(big.Int).SetBit(bitmask, 0, 0)
+	// bitmask = new(big.Int).SetBit(bitmask, 0, 0)
 	multi := bls.Multisig{PartSignature: sig, PartPublicKey: pub, PartMask: bitmask}
 	require.True(t, multi.Verify(aggPub, msg))
 }

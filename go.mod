@@ -1,4 +1,4 @@
-module github.com/eywa-protocol/bls-crypto
+module gitlab.digiu.ai/blockchainlaboratory/bls-crypto
 
 go 1.16
 

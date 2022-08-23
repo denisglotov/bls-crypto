@@ -1,9 +1,10 @@
 package test
 
 import (
-	"github.com/eywa-protocol/bls-crypto/bls"
-	"github.com/stretchr/testify/require"
 	"testing"
+
+	"github.com/stretchr/testify/require"
+	"gitlab.digiu.ai/blockchainlaboratory/bls-crypto/bls"
 )
 
 func Test_EncryptDecrypt(t *testing.T) {
