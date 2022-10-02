@@ -16,9 +16,9 @@ var (
 )
 
 func Test_VerifyMultisigDemo(t *testing.T) {
-	priv0, pub0 := bls.GenerateRandomKey()
-	priv1, pub1 := bls.GenerateRandomKey()
-	priv2, pub2 := bls.GenerateRandomKey()
+	priv0, pub0 := bls.GenerateRandomKeyForTest()
+	priv1, pub1 := bls.GenerateRandomKeyForTest()
+	priv2, pub2 := bls.GenerateRandomKeyForTest()
 	Simple := *big.NewInt(1) // in real life use coeficients against anti rogue key attack
 
 	// Aggregated public key of all participants

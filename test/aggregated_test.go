@@ -17,15 +17,15 @@ const (
 
 var (
 	msg         = GenRandomBytes(MESSAGE_SIZE)
-	privs, pubs = GenerateRandomKeys(PARTICIPANTS_NUMBER)
+	privs, pubs = GenerateRandomKeysForTest(PARTICIPANTS_NUMBER)
 	as          = bls.CalculateAntiRogueCoefficients(pubs)
 	aggPub      = bls.AggregatePublicKeys(pubs, as)
 )
 
 func Test_AggregatedSignature(t *testing.T) {
-	priv1, pub1 := bls.GenerateRandomKey()
-	priv2, pub2 := bls.GenerateRandomKey()
-	priv3, pub3 := bls.GenerateRandomKey()
+	priv1, pub1 := bls.GenerateRandomKeyForTest()
+	priv2, pub2 := bls.GenerateRandomKeyForTest()
+	priv3, pub3 := bls.GenerateRandomKeyForTest()
 	sig1 := priv1.Sign(msg)
 	sig2 := priv2.Sign(msg)
 	sig3 := priv3.Sign(msg)

@@ -11,7 +11,7 @@ import (
 
 var (
 	message              = GenRandomBytes(5000)
-	secretKey, publicKey = bls.GenerateRandomKey()
+	secretKey, publicKey = bls.GenerateRandomKeyForTest()
 	signature            = secretKey.Sign(message)
 	pubBytes             = publicKey.Marshal()
 	sigBytes             = signature.Marshal()
@@ -30,7 +30,7 @@ func TestPrecompiled_VerifySignatureInSolidity(t *testing.T) {
 }
 
 func TestPrecompiled_AddInSolidity(t *testing.T) {
-	sk, _ := GenerateRandomKeys(2)
+	sk, _ := GenerateRandomKeysForTest(2)
 	p1 := sk[0].Sign(message)
 	p2 := sk[1].Sign(message)
 	dataBytes, err := blsSignatureTest.AddOnCurveE1(&bind.CallOpts{}, p1.Marshal(), p2.Marshal())
