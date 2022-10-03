@@ -1,8 +1,8 @@
 package test
 
 import (
-	"crypto/rand"
 	"math/big"
+	"math/rand"
 
 	"gitlab.digiu.ai/blockchainlaboratory/bls-crypto/bls"
 )
@@ -10,15 +10,16 @@ import (
 // GenRandomBytes generates byte array with random data
 func GenRandomBytes(size int) (blk []byte) {
 	blk = make([]byte, size)
-	_, _ = rand.Reader.Read(blk)
+	_, _ = rand.Read(blk)
 	return
 }
 
-// GenerateRandomKeys creates an array of random private and their corresponding public keys
-func GenerateRandomKeys(total int) ([]bls.PrivateKey, []bls.PublicKey) {
+// GenerateRandomKeysForTest creates an array of random private and their corresponding public keys
+func GenerateRandomKeysForTest(total int) ([]bls.PrivateKey, []bls.PublicKey) {
 	privs, pubs := make([]bls.PrivateKey, total), make([]bls.PublicKey, total)
 	for i := 0; i < total; i++ {
-		privs[i], pubs[i] = bls.GenerateRandomKey()
+		privs[i], pubs[i] = bls.GenerateRandomKeyForTest()
+		//fmt.Printf("%s:\t%x\n", privs[i].Marshal(), pubs[i].Marshal())
 	}
 	return privs, pubs
 }

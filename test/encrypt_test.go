@@ -9,7 +9,7 @@ import (
 
 func Test_EncryptDecrypt(t *testing.T) {
 	pass := "password"
-	priv0, _ := bls.GenerateRandomKey()
+	priv0, _ := bls.GenerateRandomKeyForTest()
 
 	protectedKey, err := priv0.Encrypt(pass)
 	require.NoError(t, err)

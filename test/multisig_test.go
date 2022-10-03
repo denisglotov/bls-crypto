@@ -16,9 +16,9 @@ var (
 )
 
 func Test_VerifyMultisigDemo(t *testing.T) {
-	priv0, pub0 := bls.GenerateRandomKey()
-	priv1, pub1 := bls.GenerateRandomKey()
-	priv2, pub2 := bls.GenerateRandomKey()
+	priv0, pub0 := bls.GenerateRandomKeyForTest()
+	priv1, pub1 := bls.GenerateRandomKeyForTest()
+	priv2, pub2 := bls.GenerateRandomKeyForTest()
 	Simple := *big.NewInt(1) // in real life use coeficients against anti rogue key attack
 
 	// Aggregated public key of all participants
@@ -103,38 +103,33 @@ func Test_VerifyMultisigManual(t *testing.T) {
 	require.True(t, multi.Verify(aggPub, msg))
 }
 
-func Test_Verify63MultisigInSolidity(t *testing.T) {
+func Test_VerifyMultisig63GasTest(t *testing.T) {
 	if len(pubs) < 63 {
 		t.Skip("This test needs 63 or more PARTICIPANTS_NUMBER. Skipping.")
 	}
 	verifyMultisigTest(t, 0x7FFFFFFFFFFFFFFF)
-}
-
-func Test_Verify32MultisigInSolidity(t *testing.T) {
 	verifyMultisigTest(t, 0xFFFFFFFF)
-}
-
-func Test_Verify17MultisigInSolidity(t *testing.T) {
 	verifyMultisigTest(t, 0xF0F0F0F1)
-}
-
-func Test_Verify16MultisigInSolidity(t *testing.T) {
 	verifyMultisigTest(t, 0x0F0F0F0F)
-}
-
-func Test_Verify8MultisigInSolidity(t *testing.T) {
 	verifyMultisigTest(t, 0x11111111)
-}
-
-func Test_Verify4MultisigInSolidity(t *testing.T) {
 	verifyMultisigTest(t, 0x10101010)
-}
-
-func Test_Verify2MultisigInSolidity(t *testing.T) {
 	verifyMultisigTest(t, 0x80000001)
+	verifyMultisigTest(t, 1)
 }
 
-func Test_Verify1MultisigInSolidity(t *testing.T) {
+func Test_VerifyMultisig9GasTest(t *testing.T) {
+	if len(pubs) < 9 {
+		t.Skip("This test needs 9 or more PARTICIPANTS_NUMBER. Skipping.")
+	}
+	verifyMultisigTest(t, 0x1FF)
+	verifyMultisigTest(t, 0xFF)
+	verifyMultisigTest(t, 0x1FE)
+	verifyMultisigTest(t, 0x7F)
+	verifyMultisigTest(t, 0x3F)
+	verifyMultisigTest(t, 0x1F)
+	verifyMultisigTest(t, 0xF)
+	verifyMultisigTest(t, 0x7)
+	verifyMultisigTest(t, 0x3)
 	verifyMultisigTest(t, 1)
 }
 

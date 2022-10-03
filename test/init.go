@@ -3,6 +3,7 @@ package test
 import (
 	"crypto/ecdsa"
 	"math/big"
+	"math/rand"
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind/backends"
@@ -14,6 +15,7 @@ import (
 )
 
 var (
+	_                                     = func() int { rand.Seed(0); return 0 }()
 	backend                               *backends.SimulatedBackend
 	owner                                 *bind.TransactOpts
 	blsSignatureTest                      *wrappers.BlsSignatureTest

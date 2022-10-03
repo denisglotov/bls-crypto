@@ -20,7 +20,7 @@ type Message struct {
 
 func Test_MarshallUnmarshallJson(t *testing.T) {
 	N := 3
-	privs, pubs := GenerateRandomKeys(N)
+	privs, pubs := GenerateRandomKeysForTest(N)
 	signs := make([]bls.Signature, N)
 	multis := make([]bls.Multisig, N)
 	for i, priv := range privs {
@@ -61,7 +61,7 @@ func Test_MarshalUnmarshaKeys(t *testing.T) {
 	_, err := bls.ReadPrivateKey("hi")
 	require.Error(t, err)
 
-	priv, pub := bls.GenerateRandomKey()
+	priv, pub := bls.GenerateRandomKeyForTest()
 
 	privm, err := bls.UnmarshalPrivateKey(priv.Marshal())
 	require.NoError(t, err)
